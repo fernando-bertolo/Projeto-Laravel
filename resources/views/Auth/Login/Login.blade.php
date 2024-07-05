@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/Login/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/Auth/Login/LoginStyle.css') }}">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <div class="form-container">
@@ -15,7 +15,7 @@
                 <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
             </div>
         </div>
-        <button class="sign" type="button" onclick="teste()">Sign in</button>
+        <button class="sign" type="button" onclick="login()">Sign in</button>
     </form>
     <div class="social-message">
         <div class="line"></div>
@@ -40,31 +40,8 @@
         </button>
     </div>
     <p class="signup">Don't have an account?
-        <a rel="noopener noreferrer" href="#" class="">Sign up</a>
+        <a rel="noopener noreferrer" href="{{ route('route.register.view') }}" class="">Sign up</a>
     </p>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-<script>
-    function teste(){
-        $.ajax({
-            url: '{{ route('rota.login') }}',
-            type: 'POST',
-            data: {
-                username: $('#username').val(),
-                password: $('#password').val(),
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Inclui o token CSRF como cabeçalho
-            },
-            success: function(response){
-                console.log(response)
-            },
-            error: function(response){
-                console.log(response);
-            }
-        })
-    }
-
-</script>
+@include('auth.js');
