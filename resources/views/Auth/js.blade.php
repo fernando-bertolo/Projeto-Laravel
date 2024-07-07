@@ -63,10 +63,15 @@
                 }
             },
             success: function(response){
-                console.log(response);
+                toastr["success"](response.status);
+                $('#username').val('');
+                $('#password').val('');
+                $('#confirmPassword').val('');
             },
             error: function(xhr, status, error) {
-                console.log('Login failed:', xhr.responseText);
+                var response = JSON.parse(xhr.responseText);
+                toastr["error"](response.message);
+
             }
         })
     }
